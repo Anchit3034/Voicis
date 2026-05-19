@@ -1,5 +1,5 @@
 
-
+import asyncio
 import traceback
 import time
 
@@ -7,7 +7,13 @@ from runtime.queues import (
     stt_queue,
     tts_queue
 )
+from runtime.loop import (
+    runtime_loop
+)
 
+from runtime.websocket_server import (
+    broadcast_message
+)
 from llm.ollama_runtime import (
     stream_llm
 )
@@ -88,4 +94,10 @@ def llm_loop():
         info(
                 f"ASSISTANT:{response}"
                 )
+        asyncio.run_coroutine_threadsafe(
+                broadcast_message(
+                    "assistant",
+                    response
+                    ),
+                runtime_loop)
 

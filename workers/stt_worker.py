@@ -1,8 +1,14 @@
-
+import asyncio
 
 import traceback
 import time
+from runtime.loop import (
+    runtime_loop
+)
 
+from runtime.websocket_server import (
+    broadcast_message
+)
 from runtime.bus import (
     event_bus
 )
@@ -44,6 +50,8 @@ def stt_loop():
             text = transcribe_stream(
                 pcm_audio
             )
+            asyncio.run_coroutine_threadsafe(
+                    broadcast_message("transcript",text),runtime_loop)
 
             if not text.strip():
 

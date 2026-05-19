@@ -8,7 +8,9 @@ import sys
 from runtime.controller import (
     controller
 )
-
+from runtime.websocket_server import (
+    websocket_server
+)
 from runtime.queues import (
     event_queue
 )
@@ -47,7 +49,19 @@ from runtime.logger import (
 )
 
 system_running = True
+def start_websocket_server():
 
+    asyncio.set_event_loop(
+        runtime_loop
+    )
+
+    runtime_loop.create_task(
+        websocket_server()
+    )
+
+    runtime_loop.run_until_complete(
+        scheduler_loop()
+    )
 # ==========================================
 # SIGNAL HANDLER
 # ==========================================
@@ -136,8 +150,8 @@ run_safe(
 )
 
 run_safe(
-    "async_scheduler",
-    start_async_loop
+        "async_scheduler",
+    start_websocket_server
 )
 
 info(
