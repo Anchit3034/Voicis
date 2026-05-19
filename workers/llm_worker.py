@@ -68,10 +68,11 @@ def llm_loop():
 
             if sentence.strip():
 
-                tts_queue.put(
+                event_bus.put(RuntimeMessage(
+                    MessageType.TTS_REQUEST,
                     sentence
-                )
-
+                    )
+                              )
             print()
 
         except Exception:

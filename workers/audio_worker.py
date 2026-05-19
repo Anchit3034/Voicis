@@ -6,7 +6,17 @@ import ctypes
 import threading
 
 from runtime.events import Event
+from runtime.bus import (
+    event_bus
+)
 
+from runtime.message import (
+    RuntimeMessage
+)
+
+from runtime.messages import (
+    MessageType
+)
 from runtime.queues import (
     audio_queue,
     event_queue
@@ -166,9 +176,7 @@ def audio_loop():
 
         try:
 
-            audio_queue.put_nowait(
-                audio_pcm
-            )
+            event_bus.put(RuntimeMessage(MessageType.AUDIO_PCM,audio_pcm))
 
         except Exception as e:
 

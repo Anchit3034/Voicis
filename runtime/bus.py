@@ -1,3 +1,3 @@
 import queue
 
-event_bus=queue.Queue(maxsize=64)
+event_bus=queue.Queue(maxsize=128)

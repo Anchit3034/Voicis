@@ -2,14 +2,14 @@ from enum import Enum
 
 class MessageType(Enum):
 
-    AUDIO_PCM = 0
+    AUDIO_PCM = 1
 
-    TRANSCRIPTION = 1
+    TRANSCRIPTION = 2
 
-    AI_TOKEN = 2
+    LLM_RESPONSE = 3
 
-    TTS_SENTENCE = 3
+    TTS_REQUEST = 4
 
-    INTERRUPT = 4
+    INTERRUPT = 5
 
-    METRIC = 5
+    STATE_CHANGE = 6

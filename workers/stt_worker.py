@@ -52,22 +52,14 @@ def stt_loop():
             info(
                 f"TRANSCRIPT: {text}"
             )
+            event_bus.put(RuntimeMessage(MessageType.TRANSCRIPTION,text))
 
-            stt_queue.put(
-                text
-            )
 
             event_queue.put(
                 Event.TRANSCRIPTION_READY
             )
 
-            event_bus.put(
-                RuntimeMessage(
-                    MessageType.TRANSCRIPTION,
-                    text
-                )
-            )
-
+           
         except Exception:
 
             error(
