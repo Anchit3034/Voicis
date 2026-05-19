@@ -13,10 +13,13 @@ from runtime.queues import (
     event_queue
 )
 
-from runtime.scheduler import (
-    scheduler_loop
+from runtime.loop import (
+    runtime_loop
 )
 
+from runtime.async_scheduler import (
+    scheduler_loop
+)
 from workers.audio_worker import (
     audio_loop,
     shutdown_event
@@ -69,7 +72,18 @@ signal.signal(
     signal.SIGINT,
     handle_sigint
 )
+#===========
+#async
+#==========
+def start_async_loop():
 
+    asyncio.set_event_loop(
+        runtime_loop
+    )
+
+    runtime_loop.run_until_complete(
+        scheduler_loop()
+    )
 # ==========================================
 # SAFE THREAD WRAPPER
 # ==========================================
@@ -122,8 +136,8 @@ run_safe(
 )
 
 run_safe(
-    "scheduler",
-    scheduler_loop
+    "async_scheduler",
+    start_async_loop
 )
 
 info(

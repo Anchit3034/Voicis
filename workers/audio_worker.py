@@ -4,12 +4,16 @@
 import time
 import ctypes
 import threading
+import asyncio
 
-from runtime.events import Event
-from runtime.bus import (
+from runtime.async_bus import (
     event_bus
 )
+from runtime.events import Event
 
+from runtime.bus import (
+        event_bus
+)
 from runtime.message import (
     RuntimeMessage
 )
@@ -176,7 +180,10 @@ def audio_loop():
 
         try:
 
-            event_bus.put(RuntimeMessage(MessageType.AUDIO_PCM,audio_pcm))
+            asyncio.run_coroutine_threadsafe(
+                    event_bus.put(RuntimeMessage(MessageType.AUDIO_PCM,audio_pcm)
+                                  ),loop
+                    )
 
         except Exception as e:
 
