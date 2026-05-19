@@ -11,13 +11,13 @@ from runtime.async_bus import (
 )
 from runtime.events import Event
 
-from runtime.bus import (
-        event_bus
-)
+
 from runtime.message import (
     RuntimeMessage
 )
-
+from runtime.loop import (
+    runtime_loop
+)
 from runtime.messages import (
     MessageType
 )
@@ -182,7 +182,7 @@ def audio_loop():
 
             asyncio.run_coroutine_threadsafe(
                     event_bus.put(RuntimeMessage(MessageType.AUDIO_PCM,audio_pcm)
-                                  ),loop
+                                  ),runtime_loop
                     )
 
         except Exception as e:

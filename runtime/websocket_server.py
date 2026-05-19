@@ -18,7 +18,9 @@ from runtime.logger import (
     info,
     error
 )
-
+from runtime.gpu_registry import (
+    gpu_workers
+)
 clients = set()
 workers={}
 # ==========================================
@@ -28,6 +30,7 @@ workers={}
 async def handle_client(
     websocket
 ):
+
 
     clients.add(websocket)
 
@@ -53,7 +56,20 @@ async def handle_client(
             payload = data.get(
                 "payload"
             )
+            if data["type"] == "gpu_register":
+                worker = data["worker"]
 
+                gpu_workers[worker] = {
+                        "gpu_id":
+                        data["gpu_id"],
+                        "vram":data["vram"],"model":data["model"],"socket":websocket
+                        }
+                info(
+                        f"GPU WORKER REGISTERED: "
+                        f"{worker}"
+                        )
+
+                continue
             # =====================
             # AUDIO INPUT
             # =====================

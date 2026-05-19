@@ -1,6 +1,10 @@
 import asyncio
 import websockets
+import torch
 
+from runtime.gpu_message import (
+    gpu_registration
+)
 from stt.whisper_engine import (
     transcribe_stream
 )
@@ -59,7 +63,13 @@ async def stt_worker():
             await websocket.send(
                 response
             )
+    gpu_name = (
 
+            torch.cuda.get_device_name(0))
+            vram = round(torch.cuda.get_device_properties(0).total_memory / 1024**3,2)
+            register_packet = gpu_registration(
+                    "whisper",0,vram,"small.en")
+            await websocket.send(register_packet)
 asyncio.run(
     stt_worker()
 )
