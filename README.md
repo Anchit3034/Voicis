@@ -307,7 +307,7 @@ This project was built to explore:
 
 # License
 
-MIT License
+Apache License
 
 ---
 
