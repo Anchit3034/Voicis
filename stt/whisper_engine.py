@@ -5,13 +5,13 @@
 import whisper
 import numpy as np
 import traceback
-
+import torch
 from runtime.logger import (
     info,
     error
 )
 
-DEVICE = "cpu"
+DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 info(
     f"WHISPER LOADING ON {DEVICE}"
