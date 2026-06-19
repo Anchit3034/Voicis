@@ -320,4 +320,4 @@ Anchit Jain
 # Final Note
 
 Architected and directed a full-stack Voice AI using AI-assisted implementation to achieve rapid prototyping of low-level C components.
-
+If you find this hybrid architecture or the C audio engine helpful, drop a ⭐ to support the project!
