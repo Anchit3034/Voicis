@@ -1,8 +1,8 @@
-conversation_memory = []
+conversation_memory:list[dict[str,str]] = []
 
 MAX_HISTORY = 8
 
-def build_context(prompt):
+def build_context(prompt:str)->list[dict[str,str]]:
 
     global conversation_memory
 
@@ -17,7 +17,7 @@ def build_context(prompt):
 
     return conversation_memory
 
-def add_response(response):
+def add_response(response:str)->None:
 
     conversation_memory.append({
         "role": "assistant",

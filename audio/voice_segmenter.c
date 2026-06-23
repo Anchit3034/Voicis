@@ -31,7 +31,7 @@ void handle_sigint(int sig) {
 // INIT AUDIO
 // ==========================================
 
-void init_audio() {
+void init_audio(void) {
 
     signal(SIGINT, handle_sigint);
 
@@ -104,7 +104,7 @@ int read_audio(short *buffer) {
 // STOP CHECK
 // ==========================================
 
-int should_stop() {
+int should_stop(void) {
 
     return stop_recording;
 }
@@ -113,7 +113,7 @@ int should_stop() {
 // RESET FLAG
 // ==========================================
 
-void reset_stop_flag() {
+void reset_stop_flag(void) {
 
     stop_recording = false;
 }

@@ -1,24 +1,24 @@
 import ollama
 import traceback
-
+from typing import Iterator
 from memory.context_manager import (
     build_context,
     add_response
 )
 
-MODEL = "tinyllama"
+MODEL:str = "tinyllama"
 
-def stream_llm(prompt):
+def stream_llm(prompt:str)->Iterator[str] | None:
 
     try:
 
-        context = build_context(
+        context:list[dict[str,str]] = build_context(
             prompt
         )
 
-        response_text = ""
+        response_text:str = ""
 
-        stream = ollama.chat(
+        stream: Iterator[ollama.ChatResponse] = ollama.chat(
             model=MODEL,
             messages=context,
             stream=True
@@ -28,7 +28,7 @@ def stream_llm(prompt):
 
             try:
 
-                token = (
+                token:str = (
                     chunk["message"]
                     ["content"]
                 )
