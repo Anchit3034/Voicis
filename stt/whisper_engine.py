@@ -11,7 +11,7 @@ from runtime.logger import (
     error
 )
 
-DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+DEVICE:str = "cuda" if torch.cuda.is_available() else "cpu"
 
 info(
     f"WHISPER LOADING ON {DEVICE}"
@@ -26,7 +26,7 @@ info(
     "WHISPER READY"
 )
 
-def transcribe_stream(audio_pcm):
+def transcribe_stream(audio_pcm)->str:
 
     try:
 
@@ -39,14 +39,14 @@ def transcribe_stream(audio_pcm):
             / 32768.0
         )
 
-        result = MODEL.transcribe(
+        result:dict[str,str] = MODEL.transcribe(
             audio,
             fp16=False,
             language="en",
             temperature=0
         )
 
-        text = (
+        text:str = (
             result["text"]
             .strip()
         )

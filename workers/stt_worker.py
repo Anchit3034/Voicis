@@ -33,15 +33,15 @@ from runtime.logger import (
     error
 )
 
-def stt_loop():
+def stt_loop()->None:
 
     while True:
 
         try:
 
-            pcm_audio = audio_queue.get()
+            pcm_audio:bytes = audio_queue.get()
 
-            text = transcribe_stream(
+            text:str = transcribe_stream(
                 pcm_audio
             )
 

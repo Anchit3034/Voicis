@@ -14,7 +14,7 @@ from runtime.queues import (
 from runtime.signals import (
     interrupt_event
 )
-CHUNK_SIZE = 480
+CHUNK_SIZE:int = 480
 
 # ==========================================
 # LOAD C LIB
@@ -46,7 +46,7 @@ shutdown_event = threading.Event()
 # INPUT THREAD
 # ==========================================
 
-def input_loop():
+def input_loop()->None:
     
     while True:
 
@@ -86,7 +86,7 @@ def input_loop():
 # AUDIO LOOP
 # ==========================================
 
-def audio_loop():
+def audio_loop()->None:
 
     threading.Thread(
         target=input_loop,
@@ -114,18 +114,18 @@ def audio_loop():
             Event.SPEECH_STARTED
         )
 
-        frames = []
+        frames:list[bytes] = []
 
         while recording_event.is_set():
             
-            result = lib.read_audio(
+            result:bytes = lib.read_audio(
                 buffer
             )
 
             if result <= 0:
                 continue
 
-            pcm_bytes = memoryview(
+            pcm_bytes:bytes = memoryview(
                 buffer
             ).cast("B").tobytes()
 
@@ -156,7 +156,7 @@ def audio_loop():
             "\n[RECORDING STOPPED]"
         )
 
-        audio_pcm = b"".join(
+        audio_pcm:bytes = b"".join(
             frames
         )
 
