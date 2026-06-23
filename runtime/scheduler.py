@@ -6,7 +6,7 @@ from runtime.messages import (
     MessageType
 )
 
-def scheduler_loop():
+def scheduler_loop()->None:
 
     while True:
 

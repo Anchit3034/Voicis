@@ -4,7 +4,7 @@ class RuntimeMessage:
         self,
         msg_type,
         payload
-    ):
+    )->None:
 
         self.type = msg_type
 

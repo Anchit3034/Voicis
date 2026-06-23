@@ -20,7 +20,7 @@ event_queue = queue.Queue(
     maxsize=64
 )
 
-def clear_queue(q):
+def clear_queue(q)->None:
 
     while not q.empty():
 

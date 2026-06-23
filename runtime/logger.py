@@ -1,8 +1,8 @@
 
 
-DEBUG = False
+DEBUG:bool = False
 
-def debug(message):
+def debug(message:str)->None:
 
     if DEBUG:
 
@@ -10,13 +10,13 @@ def debug(message):
             f"[DEBUG] {message}"
         )
 
-def info(message):
+def info(message:str)->None:
 
     print(
         f"[INFO] {message}"
     )
 
-def error(message):
+def error(message:str)->None:
 
     print(
         f"[ERROR] {message}"

@@ -26,11 +26,11 @@ info(
     "WHISPER READY"
 )
 
-def transcribe_stream(audio_pcm)->str:
+def transcribe_stream(audio_pcm:bytes)->str:
 
     try:
 
-        audio = (
+        audio:bytes = (
             np.frombuffer(
                 audio_pcm,
                 dtype=np.int16
