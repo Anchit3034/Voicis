@@ -4,11 +4,11 @@ from runtime.events import Event
 
 class RuntimeController:
 
-    def __init__(self):
+    def __init__(self)->None:
 
         self.state = RuntimeState.IDLE
 
-    def handle_event(self, event):
+    def handle_event(self, event)->None:
 
         print(f"\[EVENT] {event}")
 
