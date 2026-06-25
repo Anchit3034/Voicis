@@ -29,7 +29,7 @@ process_lock = threading.Lock()
 # FORCE STOP
 # ==========================================
 
-def stop_tts():
+def stop_tts()->None:
 
     global current_piper
     global current_aplay
@@ -80,7 +80,7 @@ def stop_tts():
 # INTERRUPT WATCHER
 # ==========================================
 
-def interrupt_monitor():
+def interrupt_monitor()->None:
 
     while True:
 
@@ -100,7 +100,7 @@ def interrupt_monitor():
 # STREAM SPEECH
 # ==========================================
 
-def speak_stream(text):
+def speak_stream(text:str)->None:
 
     global current_piper
     global current_aplay
