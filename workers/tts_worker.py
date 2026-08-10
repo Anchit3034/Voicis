@@ -23,7 +23,7 @@ from runtime.logger import (
     error
 )
 
-def tts_loop():
+def tts_loop()->None:
 
     while True:
 
