@@ -19,3 +19,16 @@ typedef enum{
 	SPEAKING,
 }runtime_state;
 
+//messages
+
+typedef enum{
+	AUDIO_PCM,
+	TRANSCRIPTION,
+	AI_TOKEN,
+	TTS_SENTENCE,
+	INTERRUPT,
+	METRIC,
+}MESSAGE_TYPE;
+
+
+
